@@ -41,6 +41,12 @@ struct dsi_cmd_desc new_color_vals[33];
 
 #define DSV_ONBST 57
 
+// To prevent doubletap2wake 3 taps issue when suspended. - by jollaman999
+// - jollaman999 -
+#ifdef CONFIG_TOUCHSCREEN_DOUBLETAP2WAKE
+extern bool scr_suspended;
+#endif
+
 static int lgit_external_dsv_onoff(uint8_t on_off)
 {
 	int ret =0;
@@ -132,6 +138,13 @@ static int mipi_lgit_lcd_on(struct platform_device *pdev)
 	lcd_isactive = 1;
 
 	pr_info("%s finished\n", __func__);
+
+	// To prevent doubletap2wake 3 taps issue when suspended. - by jollaman999
+	// - jollaman999 -
+#ifdef CONFIG_TOUCHSCREEN_DOUBLETAP2WAKE
+	scr_suspended = false;
+#endif
+
 	return 0;
 }
 
@@ -182,6 +195,13 @@ static int mipi_lgit_lcd_off(struct platform_device *pdev)
 	}
 
 	pr_info("%s finished\n", __func__);
+
+	// To prevent doubletap2wake 3 taps issue when suspended. - by jollaman999
+	// - jollaman999 -
+#ifdef CONFIG_TOUCHSCREEN_DOUBLETAP2WAKE
+	scr_suspended = true;
+#endif
+
 	return 0;
 }
 
