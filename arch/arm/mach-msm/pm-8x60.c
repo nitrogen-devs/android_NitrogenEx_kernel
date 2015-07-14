@@ -53,6 +53,11 @@
 #include "pm-boot.h"
 #include <mach/event_timer.h>
 
+#ifdef CONFIG_TOUCHSCREEN_DOUBLETAP2WAKE
+// dt2w: 'touch_nr++' when 'msm_pm_enter' called - by jollaman999
+extern bool dt2w_msm_pm_enter;
+#endif
+
 /******************************************************************************
  * Debug Definitions
  *****************************************************************************/
@@ -979,6 +984,10 @@ static int msm_pm_enter(suspend_state_t state)
 		goto enter_exit;
 	}
 
+#ifdef CONFIG_TOUCHSCREEN_DOUBLETAP2WAKE
+	// dt2w: 'touch_nr++' when 'msm_pm_enter' called - by jollaman999
+	dt2w_msm_pm_enter = true;
+#endif
 
 	for (i = 0; i < MSM_PM_SLEEP_MODE_NR; i++) {
 		struct msm_pm_platform_data *mode;
