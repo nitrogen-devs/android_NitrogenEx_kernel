@@ -14,8 +14,8 @@ KERNEL="zImage"
 DEFCONFIG="gee_defconfig"
 
 # Kernel Details
-BASE_NEX_VER="NetrogenEX.geehrc"
-VER=".1.0"
+BASE_NEX_VER="NitrogenEX.geehrc"
+VER=".1.1"
 NEX_VER="$BASE_NEX_VER$VER"
 
 # Vars

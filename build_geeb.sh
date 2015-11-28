@@ -14,8 +14,8 @@ KERNEL="zImage"
 DEFCONFIG="geeb_defconfig"
 
 # Kernel Details
-BASE_NEX_VER="NetrogenEX.geeb"
-VER=".1.0"
+BASE_NEX_VER="NitrogenEX.geeb"
+VER=".1.1"
 NEX_VER="$BASE_NEX_VER$VER"
 
 # Vars
