@@ -11,7 +11,7 @@ clear
 # Resources
 THREAD="-j8"
 KERNEL="zImage"
-DEFCONFIG="gee_defconfig"
+DEFCONFIG="geehrc_defconfig"
 
 # Kernel Details
 BASE_NEX_VER="NitrogenEX.geehrc"
@@ -30,7 +30,7 @@ export CROSS_COMPILE=../Linaro-4.9.4/bin/arm-eabi-
 # Paths
 KERNEL_DIR=`pwd`
 REPACK_DIR="${HOME}/AnyKernel-geehrc"
-ZIP_MOVE="${HOME}/ZIP"
+ZIP_MOVE=${HOME}/3.4.0.`echo $NEX_VER`.zip
 ZIMAGE_DIR="${HOME}/NitrogenEx/arch/arm/boot"
 
 # Functions
