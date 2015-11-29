@@ -15,7 +15,7 @@ DEFCONFIG="geehrc_defconfig"
 
 # Kernel Details
 BASE_NEX_VER="NitrogenEX.geehrc"
-VER=".1.2"
+VER=".1.3"
 NEX_VER="$BASE_NEX_VER$VER"
 
 # Vars
