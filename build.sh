@@ -29,9 +29,9 @@ export CROSS_COMPILE=../Linaro-4.9.4/bin/arm-eabi-
 
 # Paths
 KERNEL_DIR=`pwd`
-REPACK_DIR="${HOME}/AnyKernel-geehrc"
+REPACK_DIR="anykernel"
 ZIP_MOVE=${HOME}/3.4.0.`echo $NEX_VER`.zip
-ZIMAGE_DIR="${HOME}/NitrogenEx/arch/arm/boot"
+ZIMAGE_DIR="arch/arm/boot"
 
 # Functions
 function clean_all {

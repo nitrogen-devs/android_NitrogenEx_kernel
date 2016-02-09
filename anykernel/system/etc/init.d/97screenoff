@@ -1,0 +1,52 @@
+#!/system/bin/sh
+# 97screeenoff v006 by gu5t3r@XDA modded by Loller79 and Mr.MEX
+
+#### BEGIN USER SETUP ####
+
+#### AVAILABLE GPU FREQS ARE : 622000000, 550000000, 500000000, 450000000, 400000000, 320000000, 200000000, 128000000
+MAXF=400000000;
+
+# GPU Governor
+# Performance, ondemand, simple
+gpugov=simple
+
+#### CHANGE THIS TO "Y" ONLY IF YOU WANT TO SET FREQS FROM THIS SCRIPT (NOT RECOMMENDED)
+Force_MAXF=N;
+
+#### END USER SETUP   ####
+
+####################################################################
+#### DON'T EDIT CODE BELOW IF YOU DON'T KNOW WHAT ARE YOU DOING ####
+####################################################################
+# GPU
+# Available governors are : simple, ondemand, performance
+
+chmod 666 /sys/class/kgsl/kgsl-3d0/pwrscale/trustzone/governor;
+chmod 666 /sys/class/kgsl/kgsl-3d0/max_gpuclk;
+chmod 666 /sys/class/kgsl/kgsl-3d0/gpuclk;
+
+echo -n "$gpugov" > /sys/class/kgsl/kgsl-3d0/pwrscale/trustzone/governor;
+
+MAXFF="$MAXF";
+case "$Force_MAXF" in [Yy1Tt]|[Yy][Ee][Ss]|[Tt][Rr][Uu][Ee]) Force_MAXF=Y;; *) Force_MAXF=;; esac;
+
+function CPUGPU_Control () {
+	while :; do
+		##############
+		#### Wake ####
+		##############
+		read -n1 < /sys/power/wait_for_fb_wake;
+		echo -n "$MAXF" > /sys/class/kgsl/kgsl-3d0/max_gpuclk;
+		echo -n "$MAXF" > /sys/class/kgsl/kgsl-3d0/gpuclk;
+		###############
+		#### Sleep ####
+		###############
+		read -n1 < /sys/power/wait_for_fb_sleep;
+		if [ -z "$Force_MAXF" ]; then 
+			read MAXFF < /sys/class/kgsl/kgsl-3d0/max_gpuclk;
+			if [ "$MAXFF" != "128000000" ]; then MAXF="$MAXFF"; fi;
+		fi;
+		echo -n "128000000" > /sys/class/kgsl/kgsl-3d0/max_gpuclk;
+	done
+}
+CPUGPU_Control & exit 0;
