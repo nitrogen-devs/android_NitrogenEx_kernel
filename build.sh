@@ -11,10 +11,10 @@ clear
 # Resources
 THREAD="-j8"
 KERNEL="zImage"
-DEFCONFIG="geehrc_defconfig"
+DEFCONFIG="geeb_defconfig"
 
 # Kernel Details
-BASE_NEX_VER="NitrogenEX.geehrc"
+BASE_NEX_VER="NitrogenEX.geeb"
 VER=".2.5"
 NEX_VER="$BASE_NEX_VER$VER"
 
