@@ -8,7 +8,7 @@
 cpuonline=1
 
 # CPU governor
-cpugov=ondemandplus
+cpugov=interactive
 
 # CPU min. freq.
 min_freq=162000
