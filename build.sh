@@ -15,7 +15,7 @@ DEFCONFIG="geeb_defconfig"
 
 # Kernel Details
 BASE_NEX_VER="NitrogenEX.geeb"
-VER=".2.6"
+VER=".2.7"
 NEX_VER="$BASE_NEX_VER$VER"
 
 # Vars
