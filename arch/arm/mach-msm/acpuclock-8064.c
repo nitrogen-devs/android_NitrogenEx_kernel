@@ -100,7 +100,7 @@ static struct scalable scalable[] __initdata = {
  * We rely on the RPM rounding requests up here.
 */
 static struct msm_bus_paths bw_level_tbl[] __initdata = {
-	[0] =  BW_MBPS(640), /* At least  80 MHz on bus. */
+	[0] = BW_MBPS(640),  /* At least  80 MHz on bus. */
 	[1] = BW_MBPS(1064), /* At least 133 MHz on bus. */
 	[2] = BW_MBPS(1600), /* At least 200 MHz on bus. */
 	[3] = BW_MBPS(2128), /* At least 266 MHz on bus. */
@@ -165,9 +165,6 @@ static struct acpu_level tbl_slow[] __initdata = {
 	{ 1, {  1512000, HFPLL, 1, 0x38 }, L2(14), 1250000 },
 	{ 1, {  1620000, HFPLL, 1, 0x3C }, L2(15), 1275000 },
 	{ 1, {  1728000, HFPLL, 1, 0x40 }, L2(16), 1300000 },
-	{ 1, {  1836000, HFPLL, 1, 0x44 }, L2(16), 1325000 },
-	{ 1, {  1890000, HFPLL, 1, 0x45 }, L2(16), 1350000 },
-	{ 1, {  1944000, HFPLL, 1, 0x46 }, L2(16), 1375000 },
 	{ 0, { 0 } }
 };
 
@@ -199,9 +196,6 @@ static struct acpu_level tbl_nom[] __initdata = {
 	{ 1, {  1512000, HFPLL, 1, 0x38 }, L2(14), 1200000 },
 	{ 1, {  1620000, HFPLL, 1, 0x3C }, L2(15), 1225000 },
 	{ 1, {  1728000, HFPLL, 1, 0x40 }, L2(16), 1250000 },
-	{ 1, {  1836000, HFPLL, 1, 0x44 }, L2(16), 1275000 },
-	{ 1, {  1890000, HFPLL, 1, 0x45 }, L2(16), 1300000 },
-	{ 1, {  1944000, HFPLL, 1, 0x46 }, L2(16), 1325000 },
 	{ 0, { 0 } }
 };
 
@@ -233,9 +227,6 @@ static struct acpu_level tbl_fast[] __initdata = {
 	{ 1, {  1512000, HFPLL, 1, 0x38 }, L2(14), 1150000 },
 	{ 1, {  1620000, HFPLL, 1, 0x3C }, L2(15), 1175000 },
 	{ 1, {  1728000, HFPLL, 1, 0x40 }, L2(16), 1200000 },
-	{ 1, {  1836000, HFPLL, 1, 0x44 }, L2(16), 1225000 },
-	{ 1, {  1890000, HFPLL, 1, 0x45 }, L2(16), 1250000 },
-	{ 1, {  1944000, HFPLL, 1, 0x46 }, L2(16), 1275000 },
 	{ 0, { 0 } }
 };
 
@@ -267,9 +258,6 @@ static struct acpu_level tbl_faster[] __initdata = {
 	{ 1, {  1512000, HFPLL, 1, 0x38 }, L2(14), 1125000 },
 	{ 1, {  1620000, HFPLL, 1, 0x3C }, L2(15), 1150000 },
 	{ 1, {  1728000, HFPLL, 1, 0x40 }, L2(16), 1175000 },
-	{ 1, {  1836000, HFPLL, 1, 0x44 }, L2(16), 1200000 },
-	{ 1, {  1890000, HFPLL, 1, 0x45 }, L2(16), 1225000 },
-	{ 1, {  1944000, HFPLL, 1, 0x46 }, L2(16), 1250000 },
 	{ 0, { 0 } }
 };
 
