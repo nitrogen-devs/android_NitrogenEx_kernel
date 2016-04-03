@@ -19,8 +19,8 @@ VER=".2.7"
 NEX_VER="$BASE_NEX_VER$VER"
 
 # Vars
-export KBUILD_BUILD_USER=builder
-export KBUILD_BUILD_HOST=nitrogen-build
+export KBUILD_BUILD_USER="Mr.MEX"
+export KBUILD_BUILD_HOST="nitrogen-pc"
 export CCACHE_DIR=~/.ccache/nitrogenex
 export LOCALVERSION=.`echo $NEX_VER`
 export ARCH=arm
