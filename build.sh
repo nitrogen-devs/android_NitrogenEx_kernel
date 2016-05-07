@@ -25,7 +25,7 @@ export CCACHE_DIR=~/.ccache/nitrogenex
 export LOCALVERSION=.`echo $NEX_VER`
 export ARCH=arm
 export SUBARCH=arm
-export CROSS_COMPILE=../Linaro-4.9.4/bin/arm-eabi-
+export CROSS_COMPILE=../linaro-5.2/bin/arm-cortex-linux-gnueabi-
 
 # Paths
 KERNEL_DIR=`pwd`
