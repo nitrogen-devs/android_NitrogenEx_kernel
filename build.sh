@@ -65,10 +65,8 @@ function make_kernel {
 		make -j$THREAD
 		if [ -f $ZIMAGE_DIR/$KERNEL ]; then
 			cp -vr $ZIMAGE_DIR/$KERNEL $REPACK_DIR/tmp/anykernel
-			clean_all
 		else
 			echo -e "No zImage!"
-			clean_all
 		fi
 }
 
@@ -77,10 +75,8 @@ function make_zip {
 		zip -9 -r `echo $NEX_VER`.zip .
 		if [ -f `echo $NEX_VER`.zip ]; then
 			mv  `echo $NEX_VER`.zip $ZIP_MOVE
-			clean_all
 		else
 			echo -e "No zip!"
-			clean_all
 		fi
 		cd $KERNEL_DIR
 }
