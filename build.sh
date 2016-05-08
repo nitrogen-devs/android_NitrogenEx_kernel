@@ -1,5 +1,26 @@
 #!/bin/bash
 
+nitrogen_dir=nitrogenEx
+nitrogen_build_dir=nitrogenEx-build
+compiler_dir=../linaro-5.2
+compiler_prefix=bin/arm-cortex-linux-gnueabi-
+cross_compiler=$compiler_dir/$compiler_prefix
+
+if ! [ -d ~/.ccache/$nitrogen_dir ]; then
+	echo -e "${bldred}No ccache directory, creating...${txtrst}"
+	mkdir ~/.ccache
+	mkdir ~/.ccache/$nitrogen_dir
+fi
+if ! [ -d ../$nitrogen_build_dir ]; then
+	echo -e "${bldred}No $nitrogen_build_dir directory, creating...${txtrst}"
+	mkdir ~/$nitrogen_build_dir
+	mkdir ~/$nitrogen_build_dir/build_files
+fi
+if ! [ -d ../$compiler_dir ]; then
+	echo -e "${bldred}No $compiler_dir directory, creating...${txtrst}"
+	git clone https://github.com/nitrogen-devs/linaro5.2.git $compiler_dir
+fi
+
 # Bash Color
 green='\033[01;32m'
 red='\033[01;31m'
@@ -9,13 +30,13 @@ restore='\033[0m'
 clear
 
 # Resources
-THREAD="-j8"
+THREAD=$(cat /proc/cpuinfo | grep 'model name' | sed -e 's/.*: //' | wc -l)
 KERNEL="zImage"
 DEFCONFIG="geeb_defconfig"
 
 # Kernel Details
 BASE_NEX_VER="NitrogenEX.geeb"
-VER=".2.8"
+VER=".2.9"
 NEX_VER="$BASE_NEX_VER$VER"
 
 # Vars
@@ -25,12 +46,12 @@ export CCACHE_DIR=~/.ccache/nitrogenex
 export LOCALVERSION=.`echo $NEX_VER`
 export ARCH=arm
 export SUBARCH=arm
-export CROSS_COMPILE=../Linaro-4.9.4/bin/arm-eabi-
+export CROSS_COMPILE=$cross_compiler
 
 # Paths
 KERNEL_DIR=`pwd`
 REPACK_DIR="anykernel"
-ZIP_MOVE=${HOME}/3.4.0.`echo $NEX_VER`.zip
+ZIP_MOVE=~/$nitrogen_build_dir/3.4.0.`echo $NEX_VER`.zip
 ZIMAGE_DIR="arch/arm/boot"
 
 # Functions
@@ -41,14 +62,26 @@ function clean_all {
 
 function make_kernel {
 		make $DEFCONFIG
-		make $THREAD
-		cp -vr $ZIMAGE_DIR/$KERNEL $REPACK_DIR/tmp/anykernel
+		make -j$THREAD
+		if [ -f $ZIMAGE_DIR/$KERNEL ]; then
+			cp -vr $ZIMAGE_DIR/$KERNEL $REPACK_DIR/tmp/anykernel
+			clean_all
+		else
+			echo -e "No zImage!"
+			clean_all
+		fi
 }
 
 function make_zip {
 		cd $REPACK_DIR
 		zip -9 -r `echo $NEX_VER`.zip .
-		mv  `echo $NEX_VER`.zip $ZIP_MOVE
+		if [ -f `echo $NEX_VER`.zip ]; then
+			mv  `echo $NEX_VER`.zip $ZIP_MOVE
+			clean_all
+		else
+			echo -e "No zip!"
+			clean_all
+		fi
 		cd $KERNEL_DIR
 }
 
@@ -70,7 +103,11 @@ echo "Making Kernel:"
 echo "-----------------"
 echo -e "${restore}"
 
-while read -p "Please choose your option: [1]clean-build / [2]dirty-build / [3]abort " cchoice
+while read -p "Please choose your option:
+1. Clean build
+2. Dirty build
+3. Abort
+:> " cchoice
 do
 case "$cchoice" in
 	1 )
