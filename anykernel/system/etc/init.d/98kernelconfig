@@ -20,7 +20,7 @@ max_freq=1512000
 l1cache=0
 
 # Fast charging
-fastcharge=1
+fastcharge=0
 
 # The size of the read ahead buffer
 readahead=3072
