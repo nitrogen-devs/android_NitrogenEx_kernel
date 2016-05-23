@@ -8,10 +8,10 @@
 cpuonline=1
 
 # CPU governor
-cpugov=interactive
+cpugov=ondemandplus
 
 # CPU min. freq.
-min_freq=162000
+min_freq=270000
 
 # CPU max. freq.
 max_freq=1512000
@@ -20,7 +20,7 @@ max_freq=1512000
 l1cache=0
 
 # Fast charging
-fastcharge=1
+fastcharge=0
 
 # The size of the read ahead buffer
 readahead=3072
@@ -74,7 +74,6 @@ echo -n $l1cache > /sys/module/pm_8x60/modes/cpu1/standalone_power_collapse/susp
 echo -n $l1cache > /sys/module/pm_8x60/modes/cpu2/standalone_power_collapse/suspend_enabled
 echo -n $l1cache > /sys/module/pm_8x60/modes/cpu3/standalone_power_collapse/suspend_enabled
 
-echo -n $cpuonline > /sys/devices/system/cpu/cpu0/online
 echo -n $cpuonline > /sys/devices/system/cpu/cpu1/online
 echo -n $cpuonline > /sys/devices/system/cpu/cpu2/online
 echo -n $cpuonline > /sys/devices/system/cpu/cpu3/online
