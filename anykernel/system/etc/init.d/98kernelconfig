@@ -11,7 +11,7 @@ cpuonline=1
 cpugov=interactive
 
 # CPU min. freq.
-min_freq=162000
+min_freq=270000
 
 # CPU max. freq.
 max_freq=1512000
